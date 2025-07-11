@@ -1,61 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Motosiklet Kiralama Yönetim Sistemi
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel ve Filament PHP kullanılarak geliştirilmiş motosiklet kiralama ve taksitli satış yönetim sistemi.
 
-## About Laravel
+## Özellikler
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- 📊 **Dashboard**: Toplam istatistikler, gecikmiş ödemeler, yaklaşan servisler
+- 🏍️ **Motosiklet Yönetimi**: Motosiklet ekleme, düzenleme, kilometre takibi
+- 📝 **Sözleşme Yönetimi**: Kiralama ve taksitli satış sözleşmeleri, PDF oluşturma
+- 💰 **Ödeme Takibi**: Periyodik ödeme hesaplama, gecikmiş ödeme uyarıları
+- 🔧 **Bakım Yönetimi**: Proaktif bakım takibi, servis kuralları
+- 👥 **Kullanıcı Yönetimi**: Yatırımcılar, kuryeler, sistem kullanıcıları
+- 📦 **Yedek Parça Yönetimi**: Stok takibi, otomatik düşürme
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Kurulum
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Gereksinimler
 
-## Learning Laravel
+- PHP 8.1+
+- Composer
+- MySQL/PostgreSQL
+- Node.js & NPM
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Adımlar
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Projeyi klonlayın:**
+```bash
+git clone https://github.com/maxpecto/blue2.git
+cd blue2
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Bağımlılıkları yükleyin:**
+```bash
+composer install
+npm install
+```
 
-## Laravel Sponsors
+3. **Ortam dosyasını ayarlayın:**
+```bash
+cp .env.example .env
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. **Veritabanı ayarlarını yapın:**
+`.env` dosyasında veritabanı bilgilerinizi güncelleyin:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=motosiklet_yonetim
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-### Premium Partners
+5. **Uygulama anahtarını oluşturun:**
+```bash
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+6. **Veritabanını migrate edin ve test verilerini yükleyin:**
+```bash
+php artisan migrate:fresh --seed
+```
 
-## Contributing
+7. **Filament admin kullanıcısı oluşturun:**
+```bash
+php artisan make:filament-user
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+8. **Asset'leri derleyin:**
+```bash
+npm run build
+```
 
-## Code of Conduct
+9. **Uygulamayı çalıştırın:**
+```bash
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Uygulama `http://localhost:8000` adresinde çalışacaktır.
+Admin paneline `http://localhost:8000/admin` adresinden erişebilirsiniz.
 
-## Security Vulnerabilities
+## Test Verileri
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`TestVerisiSeeder` ile aşağıdaki test verileri yüklenir:
 
-## License
+- **Yatırımcılar**: 3 adet örnek yatırımcı
+- **Kuryeler**: 5 adet örnek kurye  
+- **Motosikletler**: 10 adet farklı marka/model motosiklet
+- **Sözleşmeler**: Kiralama ve taksitli satış örnekleri
+- **Bakım Kuralları**: Kilometre bazlı servis kuralları
+- **Yedek Parçalar**: Çeşitli yedek parça örnekleri
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Kullanım
+
+### Ana Modüller
+
+1. **Dashboard**: Genel sistem durumu ve önemli bildirimler
+2. **Motosikletler**: Araç filosu yönetimi
+3. **Sözleşmeler**: Kiralama/satış işlemleri
+4. **Ödemeler**: Taksit takibi ve ödeme yönetimi
+5. **Bakım**: Servis planlaması ve takibi
+6. **Kullanıcılar**: Yatırımcı ve kurye yönetimi
+7. **Servis**: Toplu kilometre güncelleme
+
+### Önemli Özellikler
+
+- **Otomatik Ödeme Hesaplama**: Toplam tutar ve vade sayısına göre taksit hesaplama
+- **Proaktif Bakım**: Kilometre bazlı otomatik servis hatırlatmaları
+- **PDF Sözleşme**: Sözleşmelerin PDF formatında çıktısı
+- **Toplu Güncelleme**: Tüm motosikletlerin kilometrelerini toplu güncelleme
+
+## Teknolojiler
+
+- **Backend**: Laravel 11
+- **Admin Panel**: Filament PHP 3.x
+- **Veritabanı**: MySQL/PostgreSQL
+- **PDF**: DomPDF
+- **Frontend**: Blade Templates, Alpine.js
+- **Styling**: Tailwind CSS
+
+## Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır.
